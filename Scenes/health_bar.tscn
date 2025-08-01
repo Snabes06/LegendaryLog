@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://2g738uirua5c"]
+
+[ext_resource type="Texture2D" uid="uid://dqpu3ob7fhqcn" path="res://Assets/empty.jpg" id="1_m34ix"]
+[ext_resource type="Script" uid="uid://bgtynwyga747o" path="res://Scenes/health_bar.gd" id="1_qay8w"]
+[ext_resource type="Texture2D" uid="uid://bjh1iywa1uyk6" path="res://Assets/progress.jpg" id="2_qay8w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qay8w"]
+bg_color = Color(0.244777, 0.244776, 0.244776, 0.901961)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+script = ExtResource("1_qay8w")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+use_top_left = true
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/margin_top = 200
+
+[node name="Panel" type="Panel" parent="CenterContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qay8w")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/MarginContainer/Panel"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+offset_right = 300.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Health" type="Label" parent="CenterContainer/MarginContainer/Panel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "1000 / 1000"
+
+[node name="HealthBar" type="TextureProgressBar" parent="CenterContainer/MarginContainer/Panel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+max_value = 1000.0
+step = 0.0
+value = 1000.0
+rounded = true
+nine_patch_stretch = true
+texture_under = ExtResource("1_m34ix")
+texture_over = ExtResource("1_m34ix")
+texture_progress = ExtResource("2_qay8w")
+tint_under = Color(1, 1, 1, 0)
+tint_over = Color(1, 1, 1, 0)

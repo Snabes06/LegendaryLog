@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://o4gjh8fwg8qc"]
+
+[ext_resource type="PackedScene" uid="uid://03thfxo0y4c2" path="res://Scenes/player.tscn" id="1_ebmjs"]
+
+[sub_resource type="MeshTexture" id="MeshTexture_ebmjs"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ebmjs")]
+position = Vector2(923, 555)
+_COLOR = Color(0, 0.603922, 1, 1)
+_MOVEMENT_SPEED = 500
+_MAX_HEALTH = 1000
+_ATTACK_DMG = 50
+_CONTROLLED = true
+
+[node name="MapBorder" type="StaticBody2D" parent="."]
+
+[node name="Shape" type="Polygon2D" parent="MapBorder"]
+color = Color(0, 0, 0, 1)
+invert_enabled = true
+invert_border = 2351.5
+polygon = PackedVector2Array(248, -349, -126, 577, 301, 1382, 986, 1529, 1738, 1468, 2591, 1007, 2234, -193, 1258, -376)
+
+[node name="Coll" type="CollisionPolygon2D" parent="MapBorder"]
+build_mode = 1
+polygon = PackedVector2Array(248, -349, -126, 577, 301, 1382, 986, 1529, 1738, 1468, 2591, 1007, 2234, -193, 1258, -376)
+
+[node name="GreenObject" type="StaticBody2D" parent="."]
+position = Vector2(-238, 483)
+
+[node name="Shape" type="Polygon2D" parent="GreenObject"]
+z_index = -1
+color = Color(0.529412, 1, 0.321569, 1)
+invert_border = 2351.5
+polygon = PackedVector2Array(750, 340, 480, 340, 480, 470, 750, 470, 1000, 470, 1400, 470, 1400, 340)
+
+[node name="Coll" type="CollisionPolygon2D" parent="GreenObject"]
+build_mode = 1
+polygon = PackedVector2Array(750, 340, 480, 340, 480, 470, 750, 470, 1000, 470, 1400, 470, 1400, 340)
+
+[node name="Border" type="Line2D" parent="GreenObject"]
+points = PackedVector2Array(750, 340, 480, 340, 480, 470, 750, 470, 1000, 470, 1400, 470, 1400, 340)
+closed = true
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+antialiased = true
+
+[node name="RedObject" type="StaticBody2D" parent="."]
+position = Vector2(184, -271)
+
+[node name="Shape" type="Polygon2D" parent="RedObject"]
+z_index = -1
+color = Color(1, 0, 0.0509804, 1)
+texture = SubResource("MeshTexture_ebmjs")
+invert_border = 2351.5
+polygon = PackedVector2Array(1488, 959, 1329, 1092, 1321, 1210, 1329, 1293, 1405, 1366, 1674, 1381, 1936, 1297, 2062, 1104, 1948, 899, 1693, 902)
+
+[node name="Coll" type="CollisionPolygon2D" parent="RedObject"]
+build_mode = 1
+polygon = PackedVector2Array(1488, 959, 1329, 1092, 1321, 1210, 1329, 1293, 1405, 1366, 1674, 1381, 1936, 1297, 2062, 1104, 1948, 899, 1693, 902)
+
+[node name="Border" type="Line2D" parent="RedObject"]
+points = PackedVector2Array(1488, 959, 1329, 1092, 1321, 1210, 1329, 1293, 1405, 1366, 1674, 1381, 1936, 1297, 2062, 1104, 1948, 899, 1693, 902)
+closed = true
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+antialiased = true
+
+[node name="Floor" type="Polygon2D" parent="."]
+z_index = -10
+position = Vector2(2, 6)
+invert_border = 2351.5
+polygon = PackedVector2Array(248, -349, -126, 577, 301, 1382, 986, 1529, 1738, 1468, 2591, 1007, 2234, -193, 1258, -376)
+
+[node name="Enemy" parent="." instance=ExtResource("1_ebmjs")]
+position = Vector2(441, 653)
+_COLOR = Color(1, 0, 0, 1)
+_MOVEMENT_SPEED = 0
+_MAX_HEALTH = 1000
+_ATTACK_DMG = 10
+_CONTROLLED = false

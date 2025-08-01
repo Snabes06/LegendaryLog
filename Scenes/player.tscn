@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://03thfxo0y4c2"]
+
+[ext_resource type="Script" uid="uid://b5euffm6pmoo5" path="res://Scenes/player.gd" id="1_cvnsp"]
+[ext_resource type="PackedScene" uid="uid://2g738uirua5c" path="res://Scenes/health_bar.tscn" id="2_cvnsp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
+radius = 48.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v0iea"]
+radius = 512.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6t5aa"]
+radius = 64.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_cvnsp")
+
+[node name="WallCollision" type="CollisionShape2D" parent="."]
+top_level = true
+shape = SubResource("CircleShape2D_cvnsp")
+
+[node name="PlayerSprite" type="Polygon2D" parent="."]
+color = Color(0, 0.603922, 1, 1)
+polygon = PackedVector2Array(-33, 35, 0, 48, 33, 35, 48, 0, 34, -34, 0, -47, -35, -33, -48, 0)
+
+[node name="AttackRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
+shape = SubResource("CircleShape2D_v0iea")
+debug_color = Color(0.989781, 0, 0.286363, 0.42)
+
+[node name="Line2D" type="Line2D" parent="AttackRadius"]
+points = PackedVector2Array(509, -6, 493, -133, 442, -257, 358, -363, 258, -442, 131, -492, -3, -514, -134, -497, -261, -442, -362, -364, -441, -261, -495, -127, -513, 3, -492, 126, -447, 245, -363, 366, -260, 436, -141, 493, -8, 510, 134, 487, 276, 432, 370, 350, 450, 247, 498, 132)
+closed = true
+default_color = Color(1, 0, 0, 1)
+
+[node name="SelectableRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectableRadius"]
+shape = SubResource("CircleShape2D_6t5aa")
+
+[node name="HealthBar" parent="." instance=ExtResource("2_cvnsp")]
+mouse_filter = 2
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="damage_taken" from="." to="HealthBar" method="_on_damage_taken"]
+[connection signal="input_event" from="SelectableRadius" to="." method="_on_input_event"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_move_cooldown_timeout"]

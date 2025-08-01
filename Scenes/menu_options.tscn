@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyiov23g18bsl"]
+
+[ext_resource type="Script" uid="uid://fqg1dn2k60st" path="res://Scenes/menu_options.gd" id="1_03g0r"]
+[ext_resource type="Theme" uid="uid://dfcj5mxy6gt6q" path="res://Themes/default_theme.tres" id="1_vs701"]
+
+[node name="MenuOptions" type="VBoxContainer"]
+script = ExtResource("1_03g0r")
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("1_vs701")
+theme_override_font_sizes/font_size = 101
+text = "Start"
+alignment = 0
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("1_vs701")
+theme_override_font_sizes/font_size = 101
+text = "Exit"
+alignment = 0
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

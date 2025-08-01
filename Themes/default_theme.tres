@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dfcj5mxy6gt6q"]
+
+[ext_resource type="FontFile" uid="uid://dw8npmkg2j8de" path="res://Assets/ferrum.otf" id="1_m7ogn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5q30f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m7ogn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wkudg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ew257"]
+
+[resource]
+Button/constants/outline_size = 12
+Button/fonts/font = ExtResource("1_m7ogn")
+Button/styles/focus = SubResource("StyleBoxEmpty_5q30f")
+Button/styles/hover = SubResource("StyleBoxEmpty_m7ogn")
+Button/styles/normal = SubResource("StyleBoxEmpty_wkudg")
+Button/styles/pressed = SubResource("StyleBoxEmpty_ew257")
+Label/constants/outline_size = 10
+Label/fonts/font = ExtResource("1_m7ogn")
